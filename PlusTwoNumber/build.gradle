@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.library'
+    id 'maven-publish'
 }
 
 android {
@@ -24,6 +25,21 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 }
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+
+                groupId = 'com.github.itquy'
+                artifactId = 'demo-library'
+                version = '1.0.0'
+            }
+        }
+    }
+}
+
 
 dependencies {
 
